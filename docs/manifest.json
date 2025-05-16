@@ -1,6 +1,6 @@
 {
   "name": "MeditaApps",
-  "short_name": "Anotações",
+  "short_name": "MeditaApps",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#2c2f33",
