@@ -1,3 +1,6 @@
+// Script para gerenciar anotações no navegador usando Local Storage
+let indexEditando = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     carregarAnotacoes();
 
@@ -9,12 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const autor = document.getElementById('autor').value;
         const dataCriacao = new Date().toISOString().split('T')[0];
 
-        const novaAnotacao = { titulo, texto, autor, dataCriacao };
-
         let anotacoes = JSON.parse(localStorage.getItem('anotacoes')) || [];
-        anotacoes.push(novaAnotacao);
-        localStorage.setItem('anotacoes', JSON.stringify(anotacoes));
 
+        if (indexEditando !== null) {
+            // Atualizar anotação existente
+            anotacoes[indexEditando] = { titulo, texto, autor, dataCriacao };
+            indexEditando = null;
+        } else {
+            // Nova anotação
+            anotacoes.push({ titulo, texto, autor, dataCriacao });
+        }
+
+        localStorage.setItem('anotacoes', JSON.stringify(anotacoes));
         e.target.reset();
         carregarAnotacoes();
     });
@@ -33,6 +42,7 @@ function carregarAnotacoes() {
             <span><strong>Texto:</strong> ${a.texto}</span>
             <span><strong>Autor:</strong> ${a.autor}</span>
             <span><strong>Data:</strong> ${a.dataCriacao}</span>
+            <button onclick="editarAnotacao(${index})">Editar</button>
             <button onclick="removerAnotacao(${index})">Excluir</button>
         `;
         lista.appendChild(item);
@@ -44,4 +54,13 @@ function removerAnotacao(index) {
     anotacoes.splice(index, 1);
     localStorage.setItem('anotacoes', JSON.stringify(anotacoes));
     carregarAnotacoes();
+}
+
+function editarAnotacao(index) {
+    let anotacoes = JSON.parse(localStorage.getItem('anotacoes')) || [];
+    const a = anotacoes[index];
+    document.getElementById('titulo').value = a.titulo;
+    document.getElementById('texto').value = a.texto;
+    document.getElementById('autor').value = a.autor;
+    indexEditando = index;
 }
