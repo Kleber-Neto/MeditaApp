@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MeditaApp</title>
+    <link rel="icon" href="icon-192.png" type="image/png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+            .then(() => console.log("✅ Service Worker registrado"))
+            .catch(err => console.error("❌ Erro ao registrar Service Worker:", err));
+    }
+</script>
+
+<body>
+    <div class="container">
+        <h1>📒 MeditaApp</h1>
+
+        <form id="form-anotacao">
+            <input type="text" id="titulo" placeholder="Título" required>
+            <textarea id="texto" placeholder="Texto da anotação" required></textarea>
+            <input type="text" id="autor" placeholder="Autor" required>
+            <button type="submit">Salvar</button>
+        </form>
+
+        <h2>Anotações</h2>
+        <ul id="lista-anotacoes"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
