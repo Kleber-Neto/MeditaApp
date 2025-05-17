@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7a67aa">
 
     <title>MeditaApp</title>
     <link rel="icon" href="icon-192.png" type="image/png">
@@ -19,13 +20,14 @@
 
 <body>
     <div class="container">
-        <h1>📒 MeditaApp</h1>
+        <h1>Medita<span class="cor">App</span></h1>
 
         <form id="form-anotacao">
             <input type="text" id="titulo" placeholder="Título" required>
-            <textarea id="texto" placeholder="Texto da anotação" required></textarea>
+            <textarea id="texto" placeholder="Anotação" required></textarea>
             <input type="text" id="autor" placeholder="Autor" required>
-            <button type="submit">Salvar</button>
+            <button type="submit" class="botao-icone"> <img src="iconBotao-192.png" alt="Ícone" class="icone"><span>Salvar</span>
+            </button>
         </form>
 
         <h2>Anotações</h2>
