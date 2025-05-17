@@ -112,8 +112,13 @@ li {
     font-weight: bold;
 }
 
+strong {
+    color: #a596cf;
+}
+
 li span {
     display: block;
+    
 }
 
 li button {
